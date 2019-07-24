@@ -46,7 +46,7 @@ class InputAutoSuggest extends Component {
       apiEndpointSuggestData,
       onDataSelectedChange,
       staticData,
-      apiEndpointUsesJSON
+      apiHasJsonResponse
     } = this.props;
     let suggestData = null;
     if (staticData != null) {
@@ -62,7 +62,7 @@ class InputAutoSuggest extends Component {
           apiEndpointSuggestData,
           keyPathRequestResult,
           itemFormat,
-          apiEndpointUsesJSON,
+          apiHasJsonResponse,
         );
       } catch (e) {
         suggestData = { suggest: [], existingItem: null };
@@ -120,7 +120,7 @@ InputAutoSuggest.propTypes = {
   itemTextStyle: PropTypes.shape({}),
   itemTagStyle: PropTypes.shape({}),
   apiEndpointSuggestData: PropTypes.func,
-  apiEndpointUsesJSON: PropTypes.bool,
+  apiHasJsonResponse: PropTypes.bool,
   staticData: PropTypes.arrayOf(PropTypes.shape({})),
   onDataSelectedChange: PropTypes.func,
   keyPathRequestResult: PropTypes.string,
@@ -143,7 +143,7 @@ InputAutoSuggest.defaultProps = {
   placeholder: null,
   placeholderTextColor: null,
   apiEndpointSuggestData: () => _.noop,
-  apiEndpointUsesJSON: true,
+  apiHasJsonResponse: true,
   onDataSelectedChange: () => _.noop,
   keyPathRequestResult: 'suggest.city[0].options',
   itemFormat: {

@@ -49,9 +49,9 @@ async function searchForSuggest(text:string,
   apiEndpointSuggestData:(text: string)=>any,
   keyPathRequestResult:string,
   itemFormat:FormatDescribe,
-  apiEndpointUsesJSON:boolean) {
+  apiHasJsonResponse:boolean) {
   const response = await apiEndpointSuggestData(text);
-  const responseData = apiEndpointUsesJSON ? await response.json() : response;
+  const responseData = apiHasJsonResponse ? await response.json() : response;
   return suggestFormat(_.get(responseData, keyPathRequestResult), itemFormat, text);
 }
 
