@@ -48,9 +48,10 @@ function suggestFormat(
 async function searchForSuggest(text:string,
   apiEndpointSuggestData:(text: string)=>any,
   keyPathRequestResult:string,
-  itemFormat:FormatDescribe) {
+  itemFormat:FormatDescribe,
+  apiEndpointUsesJSON:boolean) {
   const response = await apiEndpointSuggestData(text);
-  const responseData = await response.json();
+  const responseData = apiEndpointUsesJSON ? await response.json() : response;
   return suggestFormat(_.get(responseData, keyPathRequestResult), itemFormat, text);
 }
 
